@@ -1,7 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import logo from './logo.svg';
+import galaxy from './galaxy.svg'; 
 import './App.css';
+import { NavLink, Switch, Route } from 'react-router-dom';
+import UserDetail from './components/UserDetail.js';
+import TaskList from './components/TaskList.js';
+import GoalList from './components/GoalList.js';
+import HomeDetail from './components/HomeDetail.js';
 
 function App() {
 
@@ -38,13 +44,64 @@ function App() {
 
   
 
+    const Navigation = () => (
+      <nav>
+        <ul>
+          <li><NavLink exact activeClassName="current" to='/'>Home</NavLink></li>
+          <li><NavLink exact activeClassName="current" to='/task-list'>Task List</NavLink></li>
+          <li><NavLink exact activeClassName="current" to='/goal-list'>Goal List</NavLink></li>
+          <li><NavLink exact activeClassName="current" to='/user-detail'>User</NavLink></li>
+        </ul>
+      </nav>
+    );
+    
+    const Main = () => (
+      <Switch>
+        <Route exact path='/' component={Home}></Route>
+        <Route exact path='/task-list' component={Tasks}></Route>
+        <Route exact path='/goal-list' component={Goals}></Route>
+        <Route exact path='/user-detail' component={User}></Route>
+      </Switch>
+    );
 
+
+    const Home = () => (
+      <div className='home'>
+        <h1>This is where we will display data</h1> 
+        
+      </div>
+    );
+    
+    const Tasks = () => (
+      <div className='tasks'>
+        <h1>Display all tasks sorted by date, filtered by category, add new, edit by clicking on item</h1>
+        <TaskList />
+      </div>
+    );
+    
+    
+    const Goals = () => (
+      <div className = 'goals'>
+        <h1>List of goals, will have option to add/change goals </h1>
+        <GoalList />
+      </div>
+    );
+    
+    const User = () => (
+      <div className = 'user'>
+        <h1>User info, for now list the only existing user</h1>
+        <UserDetail users={users}/>
+      </div>
+    );
 
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
+        <div className="App-header-content">
+        <img src={galaxy} className="App-logo" alt="logo" />
+        {/* <div>Icons made by <a href="https://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div> */}
+        <h1>Lifer</h1>
+        {/* <p>
           Edit <code>src/App.js</code> and save to reload.
         </p>
         <a
@@ -55,15 +112,18 @@ function App() {
         >
           Learn React
         </a>
-        <p> The current time is {currentTime}.</p>
-        <p> {userCount} Users: </p>
-        <ul>
+        <p> The current time is {currentTime}.</p> */}
+        {/* <p> {userCount} Users: </p> */}
+        {/* <ul>
           {users.map((user) => {
           return (<li key={user.id}>{user.name} - {user.email} </li>)
         })}
-        </ul>
+        </ul> */}
         <p> {errorMessage} </p>
+        </div>
       </header>
+      <Navigation />
+      <Main />
     </div>
   );
 }
