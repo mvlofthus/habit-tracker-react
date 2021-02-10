@@ -22,7 +22,7 @@ const UserDetail = (props) => {
 
 return (
 <div>
-    <h3> User Details: </h3>
+    <h3>User Details:</h3>
     <ul>
     {users.map((user) => {
         return (<li key={user.id}>Name: {user.name} <li>Email: {user.email}</li></li>)

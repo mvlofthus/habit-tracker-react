@@ -68,7 +68,7 @@ function App() {
     const Home = () => (
       <div className='home'>
         <h1>This is where we will display data</h1> 
-        
+        <HomeDetail/>
       </div>
     );
     
