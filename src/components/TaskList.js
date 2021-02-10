@@ -7,14 +7,15 @@ const TaskList = (props) => {
 
 
 
-    
+    const tasks = props.tasks.sort( function (a,b) {return new Date(a.date) - new Date(b.date)});
+
     // sort by date
 
     return (
     <div>
         <h3> Task List: </h3>
         <div>
-            {props.tasks.map((task) => {
+            {tasks.map((task) => {
                 const categ = props.categories.filter(i => i.id === task.category_id);
                 const assocGoal = props.goals.filter(i => i.id === task.goal_id);
                 return (<li key={task.id}> {task.date}: goal - {assocGoal[0].tag} category - {categ[0].title}
