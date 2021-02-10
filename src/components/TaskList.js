@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { DateTime } from "luxon";
 
 
 const TaskList = (props) => {
     
+
+
 
 
 
@@ -18,7 +21,9 @@ const TaskList = (props) => {
             {tasks.map((task) => {
                 const categ = props.categories.filter(i => i.id === task.category_id);
                 const assocGoal = props.goals.filter(i => i.id === task.goal_id);
-                return (<li key={task.id}> {task.date}: goal - {assocGoal[0].tag} category - {categ[0].title}
+                const dateFormatted = DateTime.fromHTTP(task.date).plus({ days: 1 }).toLocaleString(DateTime.DATE_MED_WITH_WEEKDAY);
+
+                return (<li key={task.id}> {dateFormatted}: goal - {assocGoal[0].tag} category - {categ[0].title}
                 <li> {task.body} </li>
                 </li>)
             })}
