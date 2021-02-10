@@ -75,6 +75,23 @@ function App() {
         })
     }, [])
 
+    const [tasks, setTasks] = useState([]);
+    const [taskCount, setTaskCount] = useState(0)
+    
+    useEffect(() => {
+        axios.get('/tasks')
+        .then((response) => {
+            console.log(response);
+            const tempTasks = response.data.tasks;
+            const tempTaskCount = response.data.count
+            setTasks(tempTasks);
+            setTaskCount(tempTaskCount);
+        })
+        .catch((error) => { 
+            console.log(error.message);
+        })
+    }, [])
+
   
 
     const Navigation = () => (
@@ -101,14 +118,14 @@ function App() {
     const Home = () => (
       <div className='home'>
         <h1>This is where we will display data</h1> 
-        <HomeDetail/>
+        <HomeDetail goals={goals} tasks={tasks}/>
       </div>
     );
     
     const Tasks = () => (
       <div className='tasks'>
         <h1>Display all tasks sorted by date, filtered by category, add new, edit by clicking on item</h1>
-        <TaskList categories={categories} goals={goals}/>
+        <TaskList categories={categories} goals={goals} tasks={tasks}/>
       </div>
     );
     
@@ -116,7 +133,7 @@ function App() {
     const Goals = () => (
       <div className = 'goals'>
         <h1>List of goals, will have option to add/change goals </h1>
-        <GoalList categories={categories}/>
+        <GoalList categories={categories} goals={goals}/>
       </div>
     );
     
