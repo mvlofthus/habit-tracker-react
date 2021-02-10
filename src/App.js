@@ -42,6 +42,39 @@ function App() {
       })
     }, [])
 
+    const [categories, setCategories] = useState([]);
+    const [categoryCount, setCategoryCount] = useState(0);
+
+    useEffect(() => {
+      axios.get('/categories')
+      .then((response) => {
+        console.log(response);
+        const categoryList = response.data.categories;
+        setCategories(categoryList);
+        setCategoryCount(response.data.count);
+      })
+      .catch((error) => { 
+        setErrorMessage(error.message);
+      })
+    }, [])
+
+    const [goals, setGoals] = useState([]);
+    const [goalCount, setGoalCount] = useState(0)
+    
+    useEffect(() => {
+        axios.get('/goals')
+        .then((response) => {
+            console.log(response);
+            const tempGoals = response.data.goals;
+            const tempGoalsCount = response.data.count
+            setGoals(tempGoals);
+            setGoalCount(tempGoalsCount);
+        })
+        .catch((error) => { 
+            console.log(error.message);
+        })
+    }, [])
+
   
 
     const Navigation = () => (
@@ -75,7 +108,7 @@ function App() {
     const Tasks = () => (
       <div className='tasks'>
         <h1>Display all tasks sorted by date, filtered by category, add new, edit by clicking on item</h1>
-        <TaskList />
+        <TaskList categories={categories} goals={goals}/>
       </div>
     );
     
@@ -83,7 +116,7 @@ function App() {
     const Goals = () => (
       <div className = 'goals'>
         <h1>List of goals, will have option to add/change goals </h1>
-        <GoalList />
+        <GoalList categories={categories}/>
       </div>
     );
     

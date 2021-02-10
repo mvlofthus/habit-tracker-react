@@ -21,14 +21,22 @@ const TaskList = (props) => {
     }, [])
 
 
+
+    
+    // sort by date
+
     return (
     <div>
         <h3> Task List: </h3>
-        <ul>
+        <div>
             {tasks.map((task) => {
-                return (<li key={task.id}>{task.date}: {task.body}</li>)
+                const categ = props.categories.filter(i => i.id === task.category_id);
+                const assocGoal = props.goals.filter(i => i.id === task.goal_id);
+                return (<li key={task.id}> {task.date}: goal - {assocGoal[0].tag} category - {categ[0].title}
+                <li> {task.body} </li>
+                </li>)
             })}
-        </ul>
+        </div>
 
     </div>)
     

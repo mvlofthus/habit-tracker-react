@@ -26,7 +26,7 @@ const HomeDetail = (props) => {
         <h3> Goal List: </h3>
         <ul>
             {goals.map((goal) => {
-                return (<li key={goal.id}>{goal.tag}: {goal.description}</li>)
+                return (<li key={goal.id}>{goal.tag}: {goal.description} </li>)
             })}
         </ul>
 
