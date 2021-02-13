@@ -63,6 +63,7 @@ function App() {
       .then((response) => {
         console.log(response);
         const categoryList = response.data.categories;
+        console.log(categoryList);
         setCategories(categoryList);
         setCategoryCount(response.data.count);
       })

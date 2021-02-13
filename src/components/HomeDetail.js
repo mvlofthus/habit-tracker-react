@@ -10,6 +10,9 @@ const HomeDetail = (props) => {
     // will this update with goals? Pull the data from the goal list
     // then pass data to data viz as variables
 
+
+    const tasks = props.tasks.sort( function (a,b) {return new Date(a.date) - new Date(b.date)});
+
     return (
     <div>
         <h3> Goal List: </h3>
@@ -32,7 +35,15 @@ const HomeDetail = (props) => {
 
             {/* 2 rechart tables, pie and area to display this week's completion of goals and last 3-6  weeks, working backwards */}
         <div>
-            <MeetGoals tasks={props.tasks}/>
+            <MeetGoals goals={props.goals} tasks={props.tasks}/>
+        </div>
+
+        <div>
+            <ul>
+                {tasks.map((task, i) => 
+                <li key={i}>"task:" {task.date} {DateTime.fromHTTP(task.date).toISODate()}</li>
+                )}
+            </ul>
         </div>
 
     </div>)

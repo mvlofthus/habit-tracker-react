@@ -11,10 +11,11 @@ const NewTask = (props) => {
     const testArray = [{id: 1, title: 'first'}, {id:2, title: 'second'} ]
 
     const categories = props.categories;
+    console.log(categories);
 
     const categoryList = () => {
-        const list = props.categories.map((category) => {
-            <option value={category.title}> {category.title} </option>
+        const list = props.categories.map((h, i) => {
+            <option key={i} value={h.category}> {h.title} </option>
         })
     return list;
     }
@@ -61,8 +62,12 @@ const NewTask = (props) => {
     }
 
     return (
+        
     <div>  
-        {/* <div className="form" onSubmit={onFormSubmit}>
+         {props.categories.map((category) => {
+                    console.log(category);
+                    <h1> {category.title} </h1>
+                })} s
         <form>
             <label>
                 Name:
@@ -72,14 +77,16 @@ const NewTask = (props) => {
                 Details:
                 <textarea type="text" name="body" onChange={onBodyChange} value={formFields.body}/>
             </label>
-            <select   placeholder="select category">
-                {categories.map((category) => {
-                    <option value={category.id}> {category.title} </option>
+            <select placeholder="select category">
+                {props.categories.map((category, i) => {
+                    <option key={i} value={category.title}> {category.title} </option>
                 })}
             </select>
 
+
+
             <input type="submit" value="Submit" />
-        </form> */}
+        </form>
 
 
         <Form onSubmit={onFormSubmit}>
@@ -95,9 +102,10 @@ const NewTask = (props) => {
                 <option>3</option>
                 <option>4</option>
                 <option>5</option>
-                {categories.map((category) => {
-                    console.log(category.title);
-                    <option value={category.id}> {category.title} </option>
+                {/* <option>{categories[0]}</option> */}
+                {props.categories.map((category) => {
+                    console.log(category);
+                    <option value={category.title}> {category.title} </option>
                 })} 
                 {testArray.map((item) => {
                     <option value={item.id}> {item.title} </option>
@@ -105,6 +113,10 @@ const NewTask = (props) => {
                 {categoryList}
                 </Form.Control>
             </Form.Group>
+            {props.categories.map((category) => {
+                    console.log(category);
+                    <h1> {category.title} </h1>
+                })} 
             <Form.Group >
                 <Form.Label as="legend" >
                     Radios
@@ -127,6 +139,15 @@ const NewTask = (props) => {
                     name="formHorizontalRadios"
                     id="formHorizontalRadios3"
                     />
+
+                    {categories.map((category) => {
+                    <Form.Check
+                    type="radio"
+                    label={category.title}
+                    name="formHorizontalRadios"
+                    id={category.id}
+                    />  
+                    })} 
             </Form.Group>
 
 
