@@ -3,6 +3,8 @@ import axios from 'axios';
 
 
 const GoalList = (props) => {
+    // add goals form on page
+    // edit goals form to page
 
     return (
     <div>

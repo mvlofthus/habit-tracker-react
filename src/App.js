@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import logo from './logo.svg';
+// import logo from './logo.svg';
 import galaxy from './galaxy.svg'; 
 import './App.css';
 import { NavLink, Switch, Route } from 'react-router-dom';
@@ -8,8 +8,21 @@ import UserDetail from './components/UserDetail.js';
 import TaskList from './components/TaskList.js';
 import GoalList from './components/GoalList.js';
 import HomeDetail from './components/HomeDetail.js';
+import NewTaskPopup from './components/NewTaskPopup.js'
+import NewTask from './components/NewTask.js'
 
 function App() {
+
+// FIRST TO CUT FEATURES: 
+  // add in login? 
+  // add in PWA?? Bootstrap?? 
+ 
+ 
+// TO DO 
+// add in icon on nav bar for 'login'
+// add an icon for new task
+
+
 
   const [currentTime, setCurrentTime] = useState(1);
   const [errorMessage, setErrorMessage] = useState('');
@@ -77,6 +90,7 @@ function App() {
 
     const [tasks, setTasks] = useState([]);
     const [taskCount, setTaskCount] = useState(0)
+    const [newestTask, setNewestTask] = useState([]);
     
     useEffect(() => {
         axios.get('/tasks')
@@ -86,11 +100,17 @@ function App() {
             const tempTaskCount = response.data.count
             setTasks(tempTasks);
             setTaskCount(tempTaskCount);
+            const sortedTasks = tempTasks.sort( function (a,b) {return new Date(a.date) - new Date(b.date)});
+            const tempNewest = sortedTasks.slice(-1 );
+            setNewestTask(tempNewest);
+            console.log(tempNewest);
         })
         .catch((error) => { 
             console.log(error.message);
         })
     }, [])
+
+
 
   
 
@@ -101,6 +121,7 @@ function App() {
           <li><NavLink exact activeClassName="current" to='/task-list'>Task List</NavLink></li>
           <li><NavLink exact activeClassName="current" to='/goal-list'>Goal List</NavLink></li>
           <li><NavLink exact activeClassName="current" to='/user-detail'>User</NavLink></li>
+          <li><NavLink exact activeClassName="current" to='/new-task'>Add Task</NavLink></li>
         </ul>
       </nav>
     );
@@ -111,6 +132,7 @@ function App() {
         <Route exact path='/task-list' component={Tasks}></Route>
         <Route exact path='/goal-list' component={Goals}></Route>
         <Route exact path='/user-detail' component={User}></Route>
+        <Route exact path='/new-task' component={AddTask}></Route>
       </Switch>
     );
 
@@ -118,14 +140,14 @@ function App() {
     const Home = () => (
       <div className='home'>
         <h1>This is where we will display data</h1> 
-        <HomeDetail goals={goals} tasks={tasks}/>
+        <HomeDetail goals={goals} tasks={tasks} categories={categories} newestTask={newestTask} />
       </div>
     );
     
     const Tasks = () => (
       <div className='tasks'>
         <h1>Display all tasks sorted by date, filtered by category, add new, edit by clicking on item</h1>
-        <TaskList categories={categories} goals={goals} tasks={tasks}/>
+        <TaskList categories={categories} goals={goals} tasks={tasks} />
       </div>
     );
     
@@ -141,6 +163,13 @@ function App() {
       <div className = 'user'>
         <h1>User info, for now list the only existing user</h1>
         <UserDetail users={users}/>
+      </div>
+    );
+
+    const AddTask = () => (
+      <div className='new_task'>
+        <h1>Form goes here</h1> 
+        <NewTask goals={goals} categories={categories} />
       </div>
     );
 
@@ -169,7 +198,6 @@ function App() {
           return (<li key={user.id}>{user.name} - {user.email} </li>)
         })}
         </ul> */}
-        <p> {errorMessage} </p>
         </div>
       </header>
       <Navigation />
