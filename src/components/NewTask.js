@@ -18,49 +18,56 @@ const NewTask = (props) => {
     
 
     const [formFields, setFormFields] = useState({
-        category_id: 1,
-        goal_id: 1,
-        body: "",
-        date: `${nowDT.year}-${nowMonth}-${nowDT.day}`
+        'user_id': 1,
+        'category_id': 1,
+        'goal_id': 1,
+        'date': `${nowDT.year}-${nowMonth}-${nowDT.day}`,
+        'body': ""
     });
+
+    console.log(formFields)
 
     const onCategoryChange = event => {
         console.log(`Category Field updated ${event.target.value}`);
         setFormFields({
-            goal_id: formFields.goal_id,
-            category_id: event.target.value,
-            body: formFields.body,
-            date: formFields.date
+            'goal_id': formFields.goal_id,
+            'category_id': event.target.value,
+            'user_id': formFields.user_id,
+            'body': formFields.body,
+            'date': formFields.date
         });
     };
 
     const onGoalChange = event => {
         console.log(`Goal Field updated ${event.target.value}`);
         setFormFields({
-            goal_id: event.target.value,
-            catetgory_id: formFields.category_id,
-            body: formFields.body,
-            date: formFields.date
+            'goal_id': event.target.value,
+            'category_id': formFields.category_id,
+            'user_id': formFields.user_id,
+            'body': formFields.body,
+            'date': formFields.date
         });
     };
     
     const onBodyChange = event => {
         console.log(`Body/details Field updated ${event.target.value}`);
         setFormFields({
-            goal_id: formFields.goal_id,
-            catetgory_id: formFields.category_id,
-            body: event.target.value,
-            date: formFields.date
+            'goal_id': formFields.goal_id,
+            'category_id': formFields.category_id,
+            'user_id': formFields.user_id,
+            'body': event.target.value,
+            'date': formFields.date
         });
     };
 
     const onDateChange = event => {
         console.log(`Date Field updated from ${formFields.date} to ${event.target.value}`);
         setFormFields({
-            goal_id: formFields.goal_id,
-            catetgory_id: formFields.category_id,
-            body: formFields.body,
-            date: event.target.value
+            'goal_id': formFields.goal_id,
+            'category_id': formFields.category_id,
+            'user_id': formFields.user_id,
+            'body': formFields.body,
+            'date': event.target.value
         });
     };
 
@@ -69,20 +76,22 @@ const NewTask = (props) => {
     const onFormSubmit = (event) => {
         event.preventDefault();
         console.log(`this would submit fields as: ${formFields.date} ${formFields.category_id}  ${formFields.goal_id} ${formFields.body}`);
-        // axios.post('/tasks', 
-        // { 
+        axios.post('/tasks', formFields)
+        .then((response) => {
+            console.log(response);
+            props.taskRefreshCallback(props.taskRefresh + 1);
+        })
+        .catch((error) => { 
+            console.log(error.message);
+        })
 
-        // })
-        // .then((response) => {
-        //     console.log(response);
-        //     const userList = response.data.users;
-        //     setUsers(userList);
-        //     setUserCount(response.data.count);
-        // })
-        // .catch((error) => { 
-        //     setErrorMessage(error.message);
-        // })
-    }
+        setFormFields({
+            'user_id': 1,
+            'category_id': 1,
+            'goal_id': 1,
+            'date': `${nowDT.year}-${nowMonth}-${nowDT.day}`,
+            'body': ""
+    })}
 
     return (   
     <div>  
@@ -93,7 +102,7 @@ const NewTask = (props) => {
             </Form.Group>
             <Form.Group controlId="exampleForm.ControlSelect1">
                 <Form.Label>Category</Form.Label>
-                <Form.Control as="select" placeholder="select category" onChange={onCategoryChange} value={formFields.category_id} >
+                <Form.Control as="select"  onChange={onCategoryChange} value={formFields.category_id} >
                 {categories.map((category) => {
                     return (<option key={category.id} value={category.id}> {category.title}</option>)
                 })} 

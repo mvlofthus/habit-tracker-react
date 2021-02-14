@@ -92,6 +92,11 @@ function App() {
     const [tasks, setTasks] = useState([]);
     const [taskCount, setTaskCount] = useState(0)
     const [newestTask, setNewestTask] = useState([]);
+    const [taskRefresh, setTaskRefresh] = useState(0);
+
+    const taskRefreshCallback = (update) => {
+      setTaskRefresh(update);
+    }
     
     useEffect(() => {
         axios.get('/tasks')
@@ -109,7 +114,7 @@ function App() {
         .catch((error) => { 
             console.log(error.message);
         })
-    }, [])
+    }, [taskRefresh])
 
 
 
@@ -170,7 +175,7 @@ function App() {
     const AddTask = () => (
       <div className='new_task'>
         <h1>Form goes here</h1> 
-        <NewTask goals={goals} categories={categories} />
+        <NewTask goals={goals} categories={categories} taskRefreshCallback={taskRefreshCallback} taskRefresh={taskRefresh}/>
       </div>
     );
 
