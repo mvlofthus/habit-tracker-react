@@ -64,20 +64,6 @@ const MeetGoals = (props) => {
             }
     )};
 
-
-    // const [metGoals, setMetGoals] = useState(0)
-    // {goals.map((goal) => {
-    //     const id = goal.id; 
-
-    //     if (goal.weekly_freq < weekProgress.get(id)) {
-    //         const temp = metGoals;
-    //         setMetGoals(temp + 1);
-    //     }
-    // })};
-
-
-
-
     return (
         <div>
             <p>today's day: {nowDT.day}</p>

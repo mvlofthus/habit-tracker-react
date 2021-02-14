@@ -17,10 +17,14 @@ let metGoals = props.metGoals;
       <VictoryPie 
       data={pieData}
       labelComponent={<VictoryLabel 
-        backgroundStyle={[
-          { fill: "white", opacity: 0.7 },
-          { fill: "white", opacity: 0.7 }]}/>} //added
-      labelRadius={50} //added
+        // backgroundStyle={[
+        //   { fill: "white", opacity: 0.7 },
+        //   { fill: "white", opacity: 0.7 }]}/>
+        style={[
+          { fill: "white", fontWeight: 600}]}
+          text={({ datum }) => [`${datum.category}: ${datum.number}`]} 
+          />}
+      labelRadius={40} //added
       // labelComponent={<VictoryTooltip />} //added
       // labelRadius={130} //added
       x="category"

@@ -181,24 +181,6 @@ function App() {
         <img src={galaxy} className="App-logo" alt="logo" />
         {/* <div>Icons made by <a href="https://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div> */}
         <h1>Lifer</h1>
-        {/* <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-        <p> The current time is {currentTime}.</p> */}
-        {/* <p> {userCount} Users: </p> */}
-        {/* <ul>
-          {users.map((user) => {
-          return (<li key={user.id}>{user.name} - {user.email} </li>)
-        })}
-        </ul> */}
         </div>
       </header>
       <Navigation />

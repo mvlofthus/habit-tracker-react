@@ -7,37 +7,60 @@ import { Form, Button } from 'react-bootstrap'
 const NewTask = (props) => {
     
     // post request onClick method then redirect
-
-    const testArray = [{id: 1, title: 'first'}, {id:2, title: 'second'} ]
-
-    const categories = props.categories;
+    
+    const categories = props.categories.sort( function (a,b) {return a.title - b.title});
     console.log(categories);
 
-    const categoryList = () => {
-        const list = props.categories.map((h, i) => {
-            <option key={i} value={h.category}> {h.title} </option>
-        })
-    return list;
-    }
+    const goals = props.goals.sort( function (a,b) {return a.title - b.title});
+
+    const nowDT = DateTime.local();
+    const nowMonth = (nowDT.month < 10 ? `0${nowDT.month}` : nowDT.month);
+    
 
     const [formFields, setFormFields] = useState({
-        name: "",
-        body: ""
+        category_id: 1,
+        goal_id: 1,
+        body: "",
+        date: `${nowDT.year}-${nowMonth}-${nowDT.day}`
     });
 
-    const onNameChange = event => {
-        console.log(`Name Field updated ${event.target.value}`);
+    const onCategoryChange = event => {
+        console.log(`Category Field updated ${event.target.value}`);
         setFormFields({
-            name: event.target.value,
-            body: formFields.body
+            goal_id: formFields.goal_id,
+            category_id: event.target.value,
+            body: formFields.body,
+            date: formFields.date
+        });
+    };
+
+    const onGoalChange = event => {
+        console.log(`Goal Field updated ${event.target.value}`);
+        setFormFields({
+            goal_id: event.target.value,
+            catetgory_id: formFields.category_id,
+            body: formFields.body,
+            date: formFields.date
         });
     };
     
     const onBodyChange = event => {
         console.log(`Body/details Field updated ${event.target.value}`);
         setFormFields({
-            name: formFields.name,
-            body: event.target.value
+            goal_id: formFields.goal_id,
+            catetgory_id: formFields.category_id,
+            body: event.target.value,
+            date: formFields.date
+        });
+    };
+
+    const onDateChange = event => {
+        console.log(`Date Field updated from ${formFields.date} to ${event.target.value}`);
+        setFormFields({
+            goal_id: formFields.goal_id,
+            catetgory_id: formFields.category_id,
+            body: formFields.body,
+            date: event.target.value
         });
     };
 
@@ -45,7 +68,7 @@ const NewTask = (props) => {
 
     const onFormSubmit = (event) => {
         event.preventDefault();
-        console.log(`this would submit fields as: ${formFields.name} ${formFields.body}`);
+        console.log(`this would submit fields as: ${formFields.date} ${formFields.category_id}  ${formFields.goal_id} ${formFields.body}`);
         // axios.post('/tasks', 
         // { 
 
@@ -61,94 +84,34 @@ const NewTask = (props) => {
         // })
     }
 
-    return (
-        
+    return (   
     <div>  
-         {props.categories.map((category) => {
-                    console.log(category);
-                    <h1> {category.title} </h1>
-                })} s
-        <form>
-            <label>
-                Name:
-                <input type="text" name="name" onChange={onNameChange} value={formFields.name}/>
-            </label>
-            <label>
-                Details:
-                <textarea type="text" name="body" onChange={onBodyChange} value={formFields.body}/>
-            </label>
-            <select placeholder="select category">
-                {props.categories.map((category, i) => {
-                    <option key={i} value={category.title}> {category.title} </option>
-                })}
-            </select>
-
-
-
-            <input type="submit" value="Submit" />
-        </form>
-
-
         <Form onSubmit={onFormSubmit}>
             <Form.Group controlId="exampleForm.ControlInput1">
-                <Form.Label>Email address</Form.Label>
-                <Form.Control type="email" placeholder="name@example.com" />
+                <Form.Label>Date</Form.Label>
+                <Form.Control type="date" placeholder="date"  onChange={onDateChange} value={formFields.date}/>
             </Form.Group>
             <Form.Group controlId="exampleForm.ControlSelect1">
-                <Form.Label>Example select</Form.Label>
-                <Form.Control as="select">
-                <option>1</option>
-                <option>2</option>
-                <option>3</option>
-                <option>4</option>
-                <option>5</option>
-                {/* <option>{categories[0]}</option> */}
-                {props.categories.map((category) => {
-                    console.log(category);
-                    <option value={category.title}> {category.title} </option>
+                <Form.Label>Category</Form.Label>
+                <Form.Control as="select" placeholder="select category" onChange={onCategoryChange} value={formFields.category_id} >
+                {categories.map((category) => {
+                    return (<option key={category.id} value={category.id}> {category.title}</option>)
                 })} 
-                {testArray.map((item) => {
-                    <option value={item.id}> {item.title} </option>
-                })} 
-                {categoryList}
                 </Form.Control>
             </Form.Group>
-            {props.categories.map((category) => {
-                    console.log(category);
-                    <h1> {category.title} </h1>
+            <Form.Group controlId="exampleForm.ControlSelect2">
+                <Form.Label>Goal</Form.Label>
+                <Form.Control as="select" onChange={onGoalChange} value={formFields.goal_id}>
+                {goals.map((goal) => {
+                    return (<option key={goal.id} value={goal.id}> {goal.tag} </option>)
                 })} 
-            <Form.Group >
-                <Form.Label as="legend" >
-                    Radios
-                </Form.Label>
-                    <Form.Check
-                    type="radio"
-                    label="first radio"
-                    name="formHorizontalRadios"
-                    id="formHorizontalRadios1"
-                    />
-                    <Form.Check
-                    type="radio"
-                    label="second radio"
-                    name="formHorizontalRadios"
-                    id="formHorizontalRadios2"
-                    />
-                    <Form.Check
-                    type="radio"
-                    label="third radio"
-                    name="formHorizontalRadios"
-                    id="formHorizontalRadios3"
-                    />
-
-                    {categories.map((category) => {
-                    <Form.Check
-                    type="radio"
-                    label={category.title}
-                    name="formHorizontalRadios"
-                    id={category.id}
-                    />  
-                    })} 
+                </Form.Control>
             </Form.Group>
+            <Form.Group controlId="exampleForm.ControlTextarea1">
+                <Form.Label>Details</Form.Label>
+                <Form.Control as="textarea" rows={3} onChange={onBodyChange} value={formFields.body}/>
+            </Form.Group>
+            
 
 
 
