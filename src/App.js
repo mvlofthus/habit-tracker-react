@@ -141,7 +141,7 @@ function App() {
     const Home = () => (
       <div className='home'>
         <h1>This is where we will display data</h1> 
-        <HomeDetail goals={goals} tasks={tasks} categories={categories} newestTask={newestTask} />
+        <HomeDetail goalCount={goalCount} goals={goals} tasks={tasks} categories={categories} newestTask={newestTask} />
       </div>
     );
     

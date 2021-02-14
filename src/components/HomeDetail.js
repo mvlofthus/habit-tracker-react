@@ -35,7 +35,7 @@ const HomeDetail = (props) => {
 
             {/* 2 rechart tables, pie and area to display this week's completion of goals and last 3-6  weeks, working backwards */}
         <div>
-            <MeetGoals goals={props.goals} tasks={props.tasks}/>
+            <MeetGoals goalCount={props.goalCount} goals={props.goals} tasks={props.tasks}/>
         </div>
 
         <div>
