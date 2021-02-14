@@ -3,30 +3,21 @@ import axios from 'axios';
 
 
 const GoalList = (props) => {
-    const [goals, setGoals] = useState([]);
-    const [goalCount, setGoalCount] = useState(0)
-    
-    useEffect(() => {
-        axios.get('/goals')
-        .then((response) => {
-            console.log(response);
-            const tempGoals = response.data.goals;
-            const tempGoalsCount = response.data.count
-            setGoals(tempGoals);
-            setGoalCount(tempGoalsCount);
-        })
-        .catch((error) => { 
-            console.log(error.message);
-        })
-    }, [])
-
+    // add goals form on page
+    // edit goals form to page
 
     return (
     <div>
         <h3> Goal List: </h3>
         <ul>
-            {goals.map((goal) => {
-                return (<li key={goal.id}>{goal.tag}: {goal.description}</li>)
+            {props.categories.map((cat) => {
+                return (<li key={cat.id}> {cat.title}: {cat.id}</li>)
+            })}
+        </ul>
+        <ul>
+            {props.goals.map((goal) => {
+                const categ = props.categories.filter(i => i.id === goal.category_id)
+                return (<li key={goal.id}>{goal.tag}: {goal.description}, Category: {categ[0].title}, {goal.weekly_freq} time(s) per week </li>)
             })}
         </ul>
 
