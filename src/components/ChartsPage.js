@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { DateTime } from "luxon";
-import {VictoryPie, VictoryChart} from 'victory';
+import {VictoryPie, VictoryTooltip, VictoryLabel} from 'victory';
 
 
 const ChartsPage = (props) => {
@@ -12,13 +12,23 @@ let metGoals = props.metGoals;
   ];
 
   return (
-  
-    <VictoryPie 
-    data={pieData}
-    x="category"
-    y="number"
-    labes={p => `${p.category}`}
-    />
+    <div className="chart">
+      <div className="chart-header">Plant Sales</div>
+      <VictoryPie 
+      data={pieData}
+      labelComponent={<VictoryLabel 
+        backgroundStyle={[
+          { fill: "white", opacity: 0.7 },
+          { fill: "white", opacity: 0.7 }]}/>} //added
+      labelRadius={50} //added
+      // labelComponent={<VictoryTooltip />} //added
+      // labelRadius={130} //added
+      x="category"
+      y="number"
+      // colorScale="cool"
+      colorScale={['#CB5EEE', '#4b00ae']}
+      />
+    </div>
   )
 }
 

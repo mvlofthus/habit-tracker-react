@@ -7,7 +7,7 @@ import { BrowserRouter } from 'react-router-dom';
 import 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min';
-import { VictoryPie, VictoryChart } from 'victory';
+import { VictoryPie, VictoryTooltip } from 'victory';
 
 
 ReactDOM.render(
