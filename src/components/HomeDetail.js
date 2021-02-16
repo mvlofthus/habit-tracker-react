@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import React, { useState } from 'react';
 import { DateTime } from "luxon";
-import MeetGoals from './MeetGoals.js'
+import MeetGoals from './MeetGoals.js';
+import { Container, Col, Row, Card, ProgressBar } from 'react-bootstrap';
 
 const HomeDetail = (props) => {
 
@@ -13,28 +13,24 @@ const HomeDetail = (props) => {
 
     const tasks = props.tasks.sort( function (a,b) {return new Date(a.date) - new Date(b.date)});
 
+
     return (
-    <div>
-        <h3> Goal List: </h3>
-        <ul>
-            {props.goals.map((goal) => {
-                return (<li key={goal.id}>{goal.tag}: {goal.description} </li>)
-            })}
-        </ul>
+        <div >
+            <Container className="home" >
+            
+            <Row>
+                <Col>
+                <div>
+                    <MeetGoals goalCount={props.goalCount} categories={props.categories} goals={props.goals} tasks={props.tasks} newestTask={props.newestTask} />
+                </div>
+                </Col>
+            
+    
+    
 
-        <h3>Most Recently Completed:</h3>
-        <div>{props.newestTask.map((task) => {
-                const categ = props.categories.filter(i => i.id === task.category_id);
-                const assocGoal = props.goals.filter(i => i.id === task.goal_id);
-                const dateFormatted = DateTime.fromHTTP(task.date).plus({ days: 1 }).toLocaleString(DateTime.DATE_MED_WITH_WEEKDAY);
+        
 
-                return (<li key={task.id}> {dateFormatted}: {assocGoal[0].tag} -- {categ[0].title}
-                <p>{task.body}</p>
-                </li>)
-            })}</div>
-
-            {/* 2 rechart tables, pie and area to display this week's completion of goals and last 3-6  weeks, working backwards */}
-        <div>
+        {/* <div>
             <MeetGoals goalCount={props.goalCount} goals={props.goals} tasks={props.tasks}/>
         </div>
 
@@ -44,10 +40,12 @@ const HomeDetail = (props) => {
                 <li key={i}>"task:" {task.date} {DateTime.fromHTTP(task.date).toISODate()}</li>
                 )}
             </ul>
-        </div>
+        </div> */}
 
-    </div>)
-    
+            </Row>
+        </Container>
+    </div>
+    )
 }
 
 

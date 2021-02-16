@@ -1,159 +1,130 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { DateTime } from "luxon";
-import { Form, Button } from 'react-bootstrap'
+import { Form, Button, Container, Col, Row, Alert } from 'react-bootstrap';
+import { render } from '@testing-library/react';
+
 
 
 const NewTask = (props) => {
     
     // post request onClick method then redirect
+    const [show, setShow] = useState(true);
+    const AlertDismissibleExample = () => {
+        
+            if (show) {
+            return (
+                <Alert variant="dark" onClose={() => setShow(false)} dismissible>
+                <Alert.Heading>Task Added!</Alert.Heading>
+                <p>
+                    Add more entries, or navigate to other pages to see your updated stats!
+                </p>
+                </Alert>
+            );
+            }
+    }
+        
 
-    const testArray = [{id: 1, title: 'first'}, {id:2, title: 'second'} ]
 
-    const categories = props.categories;
+    const categories = props.categories.sort( function (a,b) {return a.title - b.title});
     console.log(categories);
 
-    const categoryList = () => {
-        const list = props.categories.map((h, i) => {
-            <option key={i} value={h.category}> {h.title} </option>
-        })
-    return list;
-    }
+    const goals = props.goals.sort( function (a,b) {return a.title - b.title});
+
+    const nowDT = DateTime.local();
+    const nowMonth = (nowDT.month < 10 ? `0${nowDT.month}` : nowDT.month);
+    
 
     const [formFields, setFormFields] = useState({
-        name: "",
-        body: ""
+        'user_id': 1,
+        'category_id': 1,
+        'goal_id': 1,
+        'date': `${nowDT.year}-${nowMonth}-${nowDT.day}`,
+        'body': ""
     });
 
-    const onNameChange = event => {
-        console.log(`Name Field updated ${event.target.value}`);
-        setFormFields({
-            name: event.target.value,
-            body: formFields.body
-        });
-    };
-    
-    const onBodyChange = event => {
-        console.log(`Body/details Field updated ${event.target.value}`);
-        setFormFields({
-            name: formFields.name,
-            body: event.target.value
-        });
-    };
 
+    console.log(formFields)
+
+    const onInputChange = event => {
+        console.log(`{${event.target.name}} field updated to ${event.target.value}`);
+        const newFormFields = {
+            ...formFields,
+        }
+
+        newFormFields[event.target.name] = event.target.value;
+        setFormFields(newFormFields);
+    };
 
 
     const onFormSubmit = (event) => {
         event.preventDefault();
-        console.log(`this would submit fields as: ${formFields.name} ${formFields.body}`);
-        // axios.post('/tasks', 
-        // { 
+        console.log(`this would submit fields as: ${formFields.date} ${formFields.category_id}  ${formFields.goal_id} ${formFields.body}`);
+        axios.post('/tasks', formFields)
+        .then((response) => {
+            console.log(response);
+            props.taskRefreshCallback(props.taskRefresh + 1);
+            setShow(true);
+        })
+        .catch((error) => { 
+            console.log(error.message);
+        })
 
-        // })
-        // .then((response) => {
-        //     console.log(response);
-        //     const userList = response.data.users;
-        //     setUsers(userList);
-        //     setUserCount(response.data.count);
-        // })
-        // .catch((error) => { 
-        //     setErrorMessage(error.message);
-        // })
-    }
-
-    return (
         
-    <div>  
-         {props.categories.map((category) => {
-                    console.log(category);
-                    <h1> {category.title} </h1>
-                })} s
-        <form>
-            <label>
-                Name:
-                <input type="text" name="name" onChange={onNameChange} value={formFields.name}/>
-            </label>
-            <label>
-                Details:
-                <textarea type="text" name="body" onChange={onBodyChange} value={formFields.body}/>
-            </label>
-            <select placeholder="select category">
-                {props.categories.map((category, i) => {
-                    <option key={i} value={category.title}> {category.title} </option>
-                })}
-            </select>
+        setFormFields({
+            'user_id': 1,
+            'category_id': 1,
+            'goal_id': 1,
+            'date': `${nowDT.year}-${nowMonth}-${nowDT.day}`,
+            'body': ""
+        })
+        
+}
 
-
-
-            <input type="submit" value="Submit" />
-        </form>
-
-
+    return (   
+    <div>
+    <Container>
+    <Row>
+        <Col></Col>
+        <Col sm={12} md={8}>  
+        {AlertDismissibleExample()}
         <Form onSubmit={onFormSubmit}>
             <Form.Group controlId="exampleForm.ControlInput1">
-                <Form.Label>Email address</Form.Label>
-                <Form.Control type="email" placeholder="name@example.com" />
+                <Form.Label>Date</Form.Label>
+                <Form.Control name="date" type="date" placeholder="date"  onChange={onInputChange} value={formFields.date}/>
             </Form.Group>
             <Form.Group controlId="exampleForm.ControlSelect1">
-                <Form.Label>Example select</Form.Label>
-                <Form.Control as="select">
-                <option>1</option>
-                <option>2</option>
-                <option>3</option>
-                <option>4</option>
-                <option>5</option>
-                {/* <option>{categories[0]}</option> */}
-                {props.categories.map((category) => {
-                    console.log(category);
-                    <option value={category.title}> {category.title} </option>
+                <Form.Label>Category</Form.Label>
+                <Form.Control name="category_id" as="select"  onChange={onInputChange} value={formFields.category_id} >
+                {categories.map((category) => {
+                    return (<option key={category.id} value={category.id}> {category.title}</option>)
                 })} 
-                {testArray.map((item) => {
-                    <option value={item.id}> {item.title} </option>
-                })} 
-                {categoryList}
                 </Form.Control>
             </Form.Group>
-            {props.categories.map((category) => {
-                    console.log(category);
-                    <h1> {category.title} </h1>
+            <Form.Group controlId="exampleForm.ControlSelect2">
+                <Form.Label>Goal</Form.Label>
+                <Form.Control name="goal_id" as="select" onChange={onInputChange} value={formFields.goal_id}>
+                {goals.map((goal) => {
+                    return (<option key={goal.id} value={goal.id}> {goal.tag} </option>)
                 })} 
-            <Form.Group >
-                <Form.Label as="legend" >
-                    Radios
-                </Form.Label>
-                    <Form.Check
-                    type="radio"
-                    label="first radio"
-                    name="formHorizontalRadios"
-                    id="formHorizontalRadios1"
-                    />
-                    <Form.Check
-                    type="radio"
-                    label="second radio"
-                    name="formHorizontalRadios"
-                    id="formHorizontalRadios2"
-                    />
-                    <Form.Check
-                    type="radio"
-                    label="third radio"
-                    name="formHorizontalRadios"
-                    id="formHorizontalRadios3"
-                    />
-
-                    {categories.map((category) => {
-                    <Form.Check
-                    type="radio"
-                    label={category.title}
-                    name="formHorizontalRadios"
-                    id={category.id}
-                    />  
-                    })} 
+                </Form.Control>
             </Form.Group>
+            <Form.Group controlId="exampleForm.ControlTextarea1">
+                <Form.Label>Details</Form.Label>
+                <Form.Control name="body" as="textarea" rows={3} onChange={onInputChange} value={formFields.body}/>
+            </Form.Group>
+            
 
 
 
-            <Button type="submit">Submit form</Button>
+            <Button type="submit" variant="dark" >Submit form</Button>
+            {/* <Button type="submit" variant="dark" style={{ color: "white", background: "#4b00ae" }} >Submit form</Button> */}
+        
         </Form>
+        </Col>
+        <Col></Col>
+    </Row>
+    </Container>
     </div>
     );
 }

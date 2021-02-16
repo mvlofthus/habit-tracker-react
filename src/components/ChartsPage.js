@@ -13,20 +13,25 @@ let metGoals = props.metGoals;
 
   return (
     <div className="chart">
-      <div className="chart-header">Plant Sales</div>
+      {/* <h3>Weekly Goals Completed</h3>  */}
       <VictoryPie 
       data={pieData}
-      labelComponent={<VictoryLabel 
-        backgroundStyle={[
-          { fill: "white", opacity: 0.7 },
-          { fill: "white", opacity: 0.7 }]}/>} //added
-      labelRadius={50} //added
+      // labelComponent={<VictoryLabel 
+      //   style={[
+      //     { fill: "white", fontWeight: 700}]}
+      //     text={({ datum }) => [`${datum.category}: ${datum.number}`]} 
+      //     />}
+      style={{ labels: { fill: "white", fontSize: 16, fontWeight: "bold" } }}
+      labels={({ datum }) => [`${datum.category}: ${datum.number}`]}
+      labelRadius={30} //added
+      padding={{ top: 0, bottom: 30, left: 30, right: 30 }}
       // labelComponent={<VictoryTooltip />} //added
       // labelRadius={130} //added
       x="category"
       y="number"
       // colorScale="cool"
-      colorScale={['#CB5EEE', '#4b00ae']}
+      // colorScale={['#CB5EEE', '#4b00ae']}
+      colorScale={['#d83ef4', '#4b00ae']}
       />
     </div>
   )
