@@ -62,7 +62,7 @@ const NewTask = (props) => {
     const onFormSubmit = (event) => {
         event.preventDefault();
         console.log(`this would submit fields as: ${formFields.date} ${formFields.category_id}  ${formFields.goal_id} ${formFields.body}`);
-        axios.post(`${ec2}/tasks`, formFields)
+        axios.post(`${ec2}/tasks/`, formFields)
         .then((response) => {
             console.log(response);
             props.taskRefreshCallback(props.taskRefresh + 1);

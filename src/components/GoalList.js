@@ -29,7 +29,7 @@ const GoalList = (props) => {
     const onCategoryFormSubmit = (event) => {
         event.preventDefault();
         console.log(`this would submit fields as: ${formFieldsCat.title}`);
-        axios.post(`${ec2}/categories`, formFieldsCat)
+        axios.post(`${ec2}/categories/`, formFieldsCat)
         .then((response) => {
             console.log(response);
             props.categoryRefreshCallback(props.categoryRefresh + 1);
@@ -67,7 +67,7 @@ const GoalList = (props) => {
     const onGoalFormSubmit = (event) => {
         event.preventDefault();
         console.log(`this would submit fields as: ${formFields.category_id} ${formFields.tag}  ${formFields.description} ${formFields.weekly_freq}`);
-        axios.post(`${ec2}/goals`, formFields)
+        axios.post(`${ec2}/goals/`, formFields)
         .then((response) => {
             console.log(response);
             props.goalRefreshCallback(props.goalRefresh + 1);
