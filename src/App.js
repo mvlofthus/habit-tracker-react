@@ -15,7 +15,7 @@ function App() {
 
 
   const url = "http://localhost:5000";
-  const ec2 = "http://18.222.39.140:8000";
+  const ec2 = "https://18.222.39.140:8000";
   const [errorMessage, setErrorMessage] = useState('');
 
   const [users, setUsers] = useState([]);

@@ -4,8 +4,8 @@ import { Container, Col, Row, Card, Form, Button, ProgressBar } from 'react-boot
 
 
 const GoalList = (props) => {
-    const ec2 = "http://18.222.39.140:8000";
-    
+    const ec2 = "https://18.222.39.140:8000";
+
     const categories = props.categories.sort( function (a,b) {return a.title - b.title});
     
     // add category form on page

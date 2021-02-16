@@ -7,7 +7,7 @@ import { Form, Button, Container, Col, Row, Alert } from 'react-bootstrap';
 
 
 const NewTask = (props) => {
-    const ec2 = "http://18.222.39.140:8000";
+    const ec2 = "https://18.222.39.140:8000";
 
     
     // post request onClick method then redirect
