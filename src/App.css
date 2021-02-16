@@ -43,13 +43,16 @@
 }
 
 ul {
-  list-style: none;
+  text-align: left;
+  padding-left: 1em;
+  list-style: circle;
 }
 
-button {
-  background-color: white;
-  border-color: black;
+ol {
+  text-align: left;
+  
 }
+
 
 
 nav ul {
@@ -74,8 +77,12 @@ nav ul li a {
 
 nav ul li a:hover {
   cursor: pointer;
-  color: black; 
+  color: #343a40; 
   text-decoration: none;}
+
+/* .btn-dark {
+  background-color: black !important;
+} */
 
 .current {
   border-bottom: 4px solid white;
@@ -84,4 +91,54 @@ nav ul li a:hover {
 
 .main {
   background-color: white;
+}
+
+
+.row{
+  /* align-items: center; */
+  padding-bottom:2rem;
+}
+
+.col {
+  padding-bottom: 2rem;
+}
+
+.dark-purple-card {
+  background-color: #4b00ae;
+  background-image: -webkit-linear-gradient(135deg, #9160ca, #4b00ae);
+  border-color: white !important;
+  border-radius:1.5rem !important;
+  color: white;
+  height: 100% !important;
+}
+
+.dark-blue-card {
+  background-color: #4b00ae;
+  background-image: -webkit-linear-gradient(135deg, #2eefff, #3a88e7);
+  border-color: white !important;
+  border-radius:1.5rem !important;
+  color: white;
+  height: 100% !important;
+}
+
+.dark-pink-card {
+  background-color: #4b00ae;
+  background-image: -webkit-linear-gradient(135deg, #d83ef4, #672772);
+  border-color: white !important;
+  border-radius:1.5rem !important;
+  color: white
+}
+
+.dark-indigo-card {
+  background-color: #4b00ae;
+  background-image: -webkit-linear-gradient(135deg,#6900F2, #3c008b);
+  border-color: white !important;
+  border-radius:1.5rem !important;
+  color: white
+}
+
+.goal-progress-header {
+  text-align: left;
+  padding-left: 2em;
+  padding-right:2em;
 }

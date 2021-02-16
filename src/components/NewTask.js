@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { DateTime } from "luxon";
-import { Form, Button } from 'react-bootstrap'
+import { Form, Button, Container, Col, Row } from 'react-bootstrap';
+
 
 
 const NewTask = (props) => {
@@ -25,52 +26,18 @@ const NewTask = (props) => {
         'body': ""
     });
 
+
     console.log(formFields)
 
-    const onCategoryChange = event => {
-        console.log(`Category Field updated ${event.target.value}`);
-        setFormFields({
-            'goal_id': formFields.goal_id,
-            'category_id': event.target.value,
-            'user_id': formFields.user_id,
-            'body': formFields.body,
-            'date': formFields.date
-        });
-    };
+    const onInputChange = event => {
+        console.log(`{${event.target.name}} field updated to ${event.target.value}`);
+        const newFormFields = {
+            ...formFields,
+        }
 
-    const onGoalChange = event => {
-        console.log(`Goal Field updated ${event.target.value}`);
-        setFormFields({
-            'goal_id': event.target.value,
-            'category_id': formFields.category_id,
-            'user_id': formFields.user_id,
-            'body': formFields.body,
-            'date': formFields.date
-        });
+        newFormFields[event.target.name] = event.target.value;
+        setFormFields(newFormFields);
     };
-    
-    const onBodyChange = event => {
-        console.log(`Body/details Field updated ${event.target.value}`);
-        setFormFields({
-            'goal_id': formFields.goal_id,
-            'category_id': formFields.category_id,
-            'user_id': formFields.user_id,
-            'body': event.target.value,
-            'date': formFields.date
-        });
-    };
-
-    const onDateChange = event => {
-        console.log(`Date Field updated from ${formFields.date} to ${event.target.value}`);
-        setFormFields({
-            'goal_id': formFields.goal_id,
-            'category_id': formFields.category_id,
-            'user_id': formFields.user_id,
-            'body': formFields.body,
-            'date': event.target.value
-        });
-    };
-
 
 
     const onFormSubmit = (event) => {
@@ -94,15 +61,19 @@ const NewTask = (props) => {
     })}
 
     return (   
-    <div>  
+    <div>
+    <Container>
+    <Row>
+        <Col></Col>
+        <Col sm={12} md={8}>  
         <Form onSubmit={onFormSubmit}>
             <Form.Group controlId="exampleForm.ControlInput1">
                 <Form.Label>Date</Form.Label>
-                <Form.Control type="date" placeholder="date"  onChange={onDateChange} value={formFields.date}/>
+                <Form.Control name="date" type="date" placeholder="date"  onChange={onInputChange} value={formFields.date}/>
             </Form.Group>
             <Form.Group controlId="exampleForm.ControlSelect1">
                 <Form.Label>Category</Form.Label>
-                <Form.Control as="select"  onChange={onCategoryChange} value={formFields.category_id} >
+                <Form.Control name="category_id" as="select"  onChange={onInputChange} value={formFields.category_id} >
                 {categories.map((category) => {
                     return (<option key={category.id} value={category.id}> {category.title}</option>)
                 })} 
@@ -110,7 +81,7 @@ const NewTask = (props) => {
             </Form.Group>
             <Form.Group controlId="exampleForm.ControlSelect2">
                 <Form.Label>Goal</Form.Label>
-                <Form.Control as="select" onChange={onGoalChange} value={formFields.goal_id}>
+                <Form.Control name="goal_id" as="select" onChange={onInputChange} value={formFields.goal_id}>
                 {goals.map((goal) => {
                     return (<option key={goal.id} value={goal.id}> {goal.tag} </option>)
                 })} 
@@ -118,14 +89,20 @@ const NewTask = (props) => {
             </Form.Group>
             <Form.Group controlId="exampleForm.ControlTextarea1">
                 <Form.Label>Details</Form.Label>
-                <Form.Control as="textarea" rows={3} onChange={onBodyChange} value={formFields.body}/>
+                <Form.Control name="body" as="textarea" rows={3} onChange={onInputChange} value={formFields.body}/>
             </Form.Group>
             
 
 
 
-            <Button type="submit">Submit form</Button>
+            <Button type="submit" variant="dark" >Submit form</Button>
+            {/* <Button type="submit" variant="dark" style={{ color: "white", background: "#4b00ae" }} >Submit form</Button> */}
+        
         </Form>
+        </Col>
+        <Col></Col>
+    </Row>
+    </Container>
     </div>
     );
 }

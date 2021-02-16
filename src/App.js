@@ -8,19 +8,25 @@ import UserDetail from './components/UserDetail.js';
 import TaskList from './components/TaskList.js';
 import GoalList from './components/GoalList.js';
 import HomeDetail from './components/HomeDetail.js';
-import NewTaskPopup from './components/NewTaskPopup.js'
-import NewTask from './components/NewTask.js'
+import NewTask from './components/NewTask.js';
+import { DateTime } from "luxon";
 
 function App() {
 
 // FIRST TO CUT FEATURES: 
-  // add in login? 
-  // add in PWA?? Bootstrap?? 
- 
- 
+  // add in login?
+  // add in icon on nav bar for 'login'? 
+  // Patch requests 
+  // add in PWA??
+
+
 // TO DO 
-// add in icon on nav bar for 'login'
-// add an icon for new task
+  
+  // Bootstrap format each page
+  // Add/edit goals instead of list goal page
+  // Delete/edit Tasks?? 
+  // Modal for add task
+  // Navbar formating/layout
 
 
 
@@ -57,6 +63,11 @@ function App() {
 
     const [categories, setCategories] = useState([]);
     const [categoryCount, setCategoryCount] = useState(0);
+    const [categoryRefresh, setCategoryRefresh] = useState(0);
+
+    const categoryRefreshCallback = (update) => {
+      setCategoryRefresh(update);
+    }
 
     useEffect(() => {
       axios.get('/categories')
@@ -74,6 +85,12 @@ function App() {
 
     const [goals, setGoals] = useState([]);
     const [goalCount, setGoalCount] = useState(0)
+    const [goalRefresh, setGoalRefresh] = useState(0);
+
+    const goalRefreshCallback = (update) => {
+      setGoalRefresh(update);
+    }
+    
     
     useEffect(() => {
         axios.get('/goals')
@@ -125,8 +142,8 @@ function App() {
         <ul>
           <li><NavLink exact activeClassName="current" to='/'>Home</NavLink></li>
           <li><NavLink exact activeClassName="current" to='/task-list'>Task List</NavLink></li>
-          <li><NavLink exact activeClassName="current" to='/goal-list'>Goal List</NavLink></li>
-          <li><NavLink exact activeClassName="current" to='/user-detail'>User</NavLink></li>
+          {/* <li><NavLink exact activeClassName="current" to='/goal-list'>Goal List</NavLink></li> */}
+          <li><NavLink exact activeClassName="current" to='/user-detail'>User Preferences</NavLink></li>
           <li><NavLink exact activeClassName="current" to='/new-task'>Add Task</NavLink></li>
         </ul>
       </nav>
@@ -136,7 +153,7 @@ function App() {
       <Switch>
         <Route exact path='/' component={Home}></Route>
         <Route exact path='/task-list' component={Tasks}></Route>
-        <Route exact path='/goal-list' component={Goals}></Route>
+        {/* <Route exact path='/goal-list' component={Goals}></Route> */}
         <Route exact path='/user-detail' component={User}></Route>
         <Route exact path='/new-task' component={AddTask}></Route>
       </Switch>
@@ -145,36 +162,37 @@ function App() {
 
     const Home = () => (
       <div className='home'>
-        <h1>This is where we will display data</h1> 
+        {/* <h2>Goal Progress for Week of {DateTime.local().toLocaleString(DateTime.DATE_FULL)}</h2>  */}
         <HomeDetail goalCount={goalCount} goals={goals} tasks={tasks} categories={categories} newestTask={newestTask} />
       </div>
     );
     
     const Tasks = () => (
       <div className='tasks'>
-        <h1>Display all tasks sorted by date, filtered by category, add new, edit by clicking on item</h1>
+        <h2>Tasks</h2>
         <TaskList categories={categories} goals={goals} tasks={tasks} />
       </div>
     );
     
     
-    const Goals = () => (
-      <div className = 'goals'>
-        <h1>List of goals, will have option to add/change goals </h1>
-        <GoalList categories={categories} goals={goals}/>
-      </div>
-    );
+    // const Goals = () => (
+    //   <div className = 'goals'>
+    //     <h2>List of goals, will have option to add/change goals </h2>
+    //     <GoalList categories={categories} goals={goals}/>
+    //   </div>
+    // );
     
     const User = () => (
       <div className = 'user'>
-        <h1>User info, for now list the only existing user</h1>
+        {/* <h2>User info, for now list the only existing user</h2> */}
         <UserDetail users={users}/>
+        <GoalList categories={categories} goals={goals} goalRefreshCallback={goalRefreshCallback} goalRefresh={goalRefresh} categoryRefreshCallback={categoryRefreshCallback} categoryRefresh={categoryRefresh}/>
       </div>
     );
 
     const AddTask = () => (
       <div className='new_task'>
-        <h1>Form goes here</h1> 
+        <h2>Enter Details</h2> 
         <NewTask goals={goals} categories={categories} taskRefreshCallback={taskRefreshCallback} taskRefresh={taskRefresh}/>
       </div>
     );
