@@ -13,6 +13,9 @@ import { Navbar } from 'react-bootstrap';
 
 function App() {
 
+
+  const url = "http://localhost:5000";
+  const ec2 = "http://18.222.39.140:8000";
   const [errorMessage, setErrorMessage] = useState('');
 
   const [users, setUsers] = useState([]);
@@ -166,7 +169,7 @@ function App() {
       <NewTask goals={goals} categories={categories} taskRefreshCallback={taskRefreshCallback} taskRefresh={taskRefresh}/>
     </div>
   );
-S
+
   return (
     <div className="App">
       <header className="App-header">
