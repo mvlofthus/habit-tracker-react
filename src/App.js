@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-// import logo from './logo.svg';
+import logo from './logo.svg';
 import galaxy from './galaxy.svg'; 
 import './App.css';
 import { NavLink, Switch, Route } from 'react-router-dom';
@@ -10,6 +10,8 @@ import GoalList from './components/GoalList.js';
 import HomeDetail from './components/HomeDetail.js';
 import NewTask from './components/NewTask.js';
 import { DateTime } from "luxon";
+import { Navbar } from 'react-bootstrap';
+
 
 function App() {
 
@@ -81,7 +83,7 @@ function App() {
       .catch((error) => { 
         setErrorMessage(error.message);
       })
-    }, [])
+    }, [categoryRefresh])
 
     const [goals, setGoals] = useState([]);
     const [goalCount, setGoalCount] = useState(0)
@@ -104,7 +106,7 @@ function App() {
         .catch((error) => { 
             console.log(error.message);
         })
-    }, [])
+    }, [goalRefresh])
 
     const [tasks, setTasks] = useState([]);
     const [taskCount, setTaskCount] = useState(0)
@@ -203,11 +205,21 @@ function App() {
         <div className="App-header-content">
         <img src={galaxy} className="App-logo" alt="logo" />
         {/* <div>Icons made by <a href="https://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div> */}
-        <h1>Lifer</h1>
+        <h1 className="header-h1">Lifer</h1>
         </div>
       </header>
       <Navigation />
       <Main />
+      
+      <Navbar bg="light" variant="light" sticky="bottom">
+        <Navbar.Text className="footer-text">
+        &copy; 2021 Mackenzie Lofthus 
+        </Navbar.Text>
+        <Navbar.Text  className="ml-auto">
+          
+        </Navbar.Text>
+      </Navbar>
+
     </div>
   );
 }

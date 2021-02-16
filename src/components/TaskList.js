@@ -62,7 +62,7 @@ const TaskList = (props) => {
             <Col></Col>
             <Col sm={12} md={8} > 
             
-            <ul class="text-left">
+            <ul className="text-left">
                 {tasks.map((task) => {
                     const categ = props.categories.filter(i => i.id === task.category_id);
                     const assocGoal = props.goals.filter(i => i.id === task.goal_id);

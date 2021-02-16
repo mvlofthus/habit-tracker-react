@@ -1,14 +1,31 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { DateTime } from "luxon";
-import { Form, Button, Container, Col, Row } from 'react-bootstrap';
+import { Form, Button, Container, Col, Row, Alert } from 'react-bootstrap';
+import { render } from '@testing-library/react';
 
 
 
 const NewTask = (props) => {
     
     // post request onClick method then redirect
-    
+    const [show, setShow] = useState(true);
+    const AlertDismissibleExample = () => {
+        
+            if (show) {
+            return (
+                <Alert variant="dark" onClose={() => setShow(false)} dismissible>
+                <Alert.Heading>Task Added!</Alert.Heading>
+                <p>
+                    Add more entries, or navigate to other pages to see your updated stats!
+                </p>
+                </Alert>
+            );
+            }
+    }
+        
+
+
     const categories = props.categories.sort( function (a,b) {return a.title - b.title});
     console.log(categories);
 
@@ -47,18 +64,22 @@ const NewTask = (props) => {
         .then((response) => {
             console.log(response);
             props.taskRefreshCallback(props.taskRefresh + 1);
+            setShow(true);
         })
         .catch((error) => { 
             console.log(error.message);
         })
 
+        
         setFormFields({
             'user_id': 1,
             'category_id': 1,
             'goal_id': 1,
             'date': `${nowDT.year}-${nowMonth}-${nowDT.day}`,
             'body': ""
-    })}
+        })
+        
+}
 
     return (   
     <div>
@@ -66,6 +87,7 @@ const NewTask = (props) => {
     <Row>
         <Col></Col>
         <Col sm={12} md={8}>  
+        {AlertDismissibleExample()}
         <Form onSubmit={onFormSubmit}>
             <Form.Group controlId="exampleForm.ControlInput1">
                 <Form.Label>Date</Form.Label>

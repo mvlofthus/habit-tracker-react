@@ -16,15 +16,15 @@ let metGoals = props.metGoals;
       {/* <h3>Weekly Goals Completed</h3>  */}
       <VictoryPie 
       data={pieData}
-      labelComponent={<VictoryLabel 
-        // backgroundStyle={[
-        //   { fill: "white", opacity: 0.7 },
-        //   { fill: "white", opacity: 0.7 }]}/>
-        style={[
-          { fill: "white", fontWeight: 700}]}
-          text={({ datum }) => [`${datum.category}: ${datum.number}`]} 
-          />}
+      // labelComponent={<VictoryLabel 
+      //   style={[
+      //     { fill: "white", fontWeight: 700}]}
+      //     text={({ datum }) => [`${datum.category}: ${datum.number}`]} 
+      //     />}
+      style={{ labels: { fill: "white", fontSize: 16, fontWeight: "bold" } }}
+      labels={({ datum }) => [`${datum.category}: ${datum.number}`]}
       labelRadius={30} //added
+      padding={{ top: 0, bottom: 30, left: 30, right: 30 }}
       // labelComponent={<VictoryTooltip />} //added
       // labelRadius={130} //added
       x="category"

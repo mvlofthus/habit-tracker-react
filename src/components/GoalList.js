@@ -106,7 +106,7 @@ const GoalList = (props) => {
             {props.goals.map((goal) => {
                 const categ = props.categories.filter(i => i.id === goal.category_id)
                 return (<li key={goal.id}><strong>{goal.tag}:</strong> {goal.description}, 
-                <br/> Category: {categ[0].title}, Frequency: {goal.weekly_freq} time(s) per week </li>)
+                <p> Category: {categ[0].title}, Frequency: {goal.weekly_freq} time(s) per week </p></li>)
             })}
         </ul>
         </Card.Body>

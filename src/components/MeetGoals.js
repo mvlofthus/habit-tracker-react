@@ -105,16 +105,17 @@ const MeetGoals = (props) => {
         
             <Container>
             <Row>
-                <Col sm={12} md={6}> 
+                <Col sm={12} lg={6}> 
                 <Card className="dark-indigo-card">
                     <Card.Body>
 
                     <h3> Goals: </h3>
-                    <ul><strong>
+                    <hr/>
+                    <ul ><strong>
                         {props.goals.map((goal) => {
                             const id = goal.id;
 
-                            return (<li>
+                            return (<li className="prog-bar-list">
                                 <p key={id}><strong>{goal.tag} - {weekProgress.get(id)} / {goal.weekly_freq}</strong></p>
                                 <ProgressBar now={(weekProgress.get(id)) / (goal.weekly_freq) * 100}/>
                                 </li>
@@ -124,13 +125,15 @@ const MeetGoals = (props) => {
                     </Card.Body>
                 </Card>
                 </Col>
-                <Col  sm={12} md={6}>
+                <Col  sm={12} lg={6}>
                 <Card className="dark-blue-card">
                     <Card.Body>
                     <h3>Week of {DateTime.local().toLocaleString(DateTime.DATE_FULL)}</h3>
-                    <br/>
-                    <h5>Most Recent Task Completed:</h5>
-                        {props.newestTask.map((task) => {
+                    <hr/>
+                    <div className="col-sm-12 h-100 d-table">
+                    <div className="d-table-cell align-middle">
+                    <p className="blue-highlight"><h5>Most Recently Completed Task:</h5>
+                    {props.newestTask.map((task) => {
                         const categ = props.categories.filter(i => i.id === task.category_id);
                         const assocGoal = props.goals.filter(i => i.id === task.goal_id);
                         const dateFormatted = DateTime.fromHTTP(task.date).plus({ days: 1 }).toLocaleString(DateTime.DATE_MED_WITH_WEEKDAY);
@@ -140,27 +143,30 @@ const MeetGoals = (props) => {
                         <p>{task.body}</p>
                         </div>)
                         })}
+                        </p> 
+                    </div>
+                    </div>
                     
                     </Card.Body>
                 </Card>
                 </Col>
             </Row>
             <Row>
-                <Col sm={12} md={6} >
+                <Col sm={12} lg={6} >
                     <ChartsPage goalCount={props.goalCount} metGoals={metGoals}/>
                 </Col>
-                <Col sm={12} md={6} >
+                <Col sm={12} lg={6} >
                 <Card className="dark-pink-card">
                     <Card.Body>
                     <h3> Goal Progress: </h3>
+                    <hr/>
                     
                         {goals.map((goal) => {
                         const id = goal.id; 
                         
-                        return (<p key={id} className="goal-progress-header"> <hr/> <strong><strong>{goal.tag} - {weekProgress.get(id)} / {goal.weekly_freq}</strong></strong>
+                        return (<p key={id} className="goal-progress-header">  <strong><strong>{goal.tag} - {weekProgress.get(id)} / {goal.weekly_freq}</strong></strong>
                         
-                        {/* <ProgressBar now={(weekProgress.get(id)) / (goal.weekly_freq) * 100}/> */}
-                        <ol>
+                        <ul className="goal-progress-list">
                             {thisWeekTasks.filter(task => task.goal_id == id).map((task) => {
                             // const assocGoal = props.goals.filter(i => i.id === task.goal_id);
                             // const dateFormatted = DateTime.fromHTTP(task.date).plus({ days: 1 }).toLocaleString(DateTime.DATE_MED_WITH_WEEKDAY);
@@ -169,8 +175,7 @@ const MeetGoals = (props) => {
                             return (
                             <li key={task.id}> <strong> {dateFormatted.weekdayShort}, {dateFormatted.monthShort} {dateFormatted.day}: </strong> {task.body}</li>
                             )})}
-                        </ol>
-                        <hr/>
+                        </ul>
                         </p>)})}
                                 
     
