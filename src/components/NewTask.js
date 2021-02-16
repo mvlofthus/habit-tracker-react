@@ -7,6 +7,8 @@ import { Form, Button, Container, Col, Row, Alert } from 'react-bootstrap';
 
 
 const NewTask = (props) => {
+    const ec2 = "http://18.222.39.140:8000";
+
     
     // post request onClick method then redirect
     const [show, setShow] = useState(true);
@@ -60,7 +62,7 @@ const NewTask = (props) => {
     const onFormSubmit = (event) => {
         event.preventDefault();
         console.log(`this would submit fields as: ${formFields.date} ${formFields.category_id}  ${formFields.goal_id} ${formFields.body}`);
-        axios.post('/tasks', formFields)
+        axios.post(`${ec2}/tasks`, formFields)
         .then((response) => {
             console.log(response);
             props.taskRefreshCallback(props.taskRefresh + 1);

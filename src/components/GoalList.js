@@ -4,6 +4,8 @@ import { Container, Col, Row, Card, Form, Button, ProgressBar } from 'react-boot
 
 
 const GoalList = (props) => {
+    const ec2 = "http://18.222.39.140:8000";
+    
     const categories = props.categories.sort( function (a,b) {return a.title - b.title});
     
     // add category form on page
@@ -27,7 +29,7 @@ const GoalList = (props) => {
     const onCategoryFormSubmit = (event) => {
         event.preventDefault();
         console.log(`this would submit fields as: ${formFieldsCat.title}`);
-        axios.post('/categories', formFieldsCat)
+        axios.post(`${ec2}/categories`, formFieldsCat)
         .then((response) => {
             console.log(response);
             props.categoryRefreshCallback(props.categoryRefresh + 1);
@@ -65,7 +67,7 @@ const GoalList = (props) => {
     const onGoalFormSubmit = (event) => {
         event.preventDefault();
         console.log(`this would submit fields as: ${formFields.category_id} ${formFields.tag}  ${formFields.description} ${formFields.weekly_freq}`);
-        axios.post('/goals', formFields)
+        axios.post(`${ec2}/goals`, formFields)
         .then((response) => {
             console.log(response);
             props.goalRefreshCallback(props.goalRefresh + 1);

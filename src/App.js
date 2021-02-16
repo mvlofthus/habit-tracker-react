@@ -22,7 +22,7 @@ function App() {
   const [userCount, setUserCount] = useState(0);
 
   useEffect(() => {
-    axios.get('/users')
+    axios.get(`${ec2}/users`)
     .then((response) => {
       console.log(response);
       const userList = response.data.users;
@@ -43,7 +43,7 @@ function App() {
   }
 
   useEffect(() => {
-    axios.get('/categories')
+    axios.get(`${ec2}/categories`)
     .then((response) => {
       console.log(response);
       const categoryList = response.data.categories;
@@ -66,7 +66,7 @@ function App() {
   
   
   useEffect(() => {
-      axios.get('/goals')
+      axios.get(`${ec2}/goals`)
       .then((response) => {
           console.log(response);
           const tempGoals = response.data.goals;
@@ -89,7 +89,7 @@ function App() {
   }
   
   useEffect(() => {
-      axios.get('/tasks')
+      axios.get(`${ec2}/tasks`)
       .then((response) => {
           console.log(response);
           const tempTasks = response.data.tasks;
