@@ -2,14 +2,14 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { DateTime } from "luxon";
 import { Form, Button, Container, Col, Row, Alert } from 'react-bootstrap';
-import { render } from '@testing-library/react';
+import { findAllByDisplayValue, render } from '@testing-library/react';
 
 
 
 const NewTask = (props) => {
     
     // post request onClick method then redirect
-    const [show, setShow] = useState(true);
+    const [show, setShow] = useState(false);
     const AlertDismissibleExample = () => {
         
             if (show) {
