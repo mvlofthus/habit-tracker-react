@@ -80,8 +80,8 @@ const MeetGoals = (props) => {
                         {props.goals.map((goal) => {
                             const id = goal.id;
 
-                            return (<li className="prog-bar-list">
-                                <p key={id}><strong>{goal.tag} - {weekProgress.get(id)} / {goal.weekly_freq}</strong></p>
+                            return (<li key={id} className="prog-bar-list">
+                                <p ><strong>{goal.tag} - {weekProgress.get(id)} / {goal.weekly_freq}</strong></p>
                                 <ProgressBar now={(weekProgress.get(id)) / (goal.weekly_freq) * 100}/>
                                 </li>
                                 )
@@ -97,7 +97,7 @@ const MeetGoals = (props) => {
                     <hr/>
                     <div className="col-sm-12 h-100 d-table">
                     <div className="d-table-cell align-middle">
-                    <p className="blue-highlight"><h5>Most Recently Completed Task:</h5>
+                    <div className="blue-highlight"><h5>Most Recently Completed Task:</h5>
                     {props.newestTask.map((task) => {
                         // const categ = props.categories.filter(i => i.id === task.category_id);
                         const assocGoal = props.goals.filter(i => i.id === task.goal_id);
@@ -108,7 +108,7 @@ const MeetGoals = (props) => {
                         <p>{task.body}</p>
                         </div>)
                         })}
-                        </p> 
+                        </div> 
                     </div>
                     </div>
                     </Card.Body>
@@ -128,10 +128,10 @@ const MeetGoals = (props) => {
                         {goals.map((goal) => {
                         const id = goal.id; 
                         
-                        return (<p key={id} className="goal-progress-header">  <strong><strong>{goal.tag} - {weekProgress.get(id)} / {goal.weekly_freq}</strong></strong>
+                        return (<div key={id} className="goal-progress-header">  <strong><strong>{goal.tag} - {weekProgress.get(id)} / {goal.weekly_freq}</strong></strong>
                         
                         <ul className="goal-progress-list">
-                            {thisWeekTasks.filter(task => task.goal_id == id).map((task) => {
+                            {thisWeekTasks.filter(task => task.goal_id === id).map((task) => {
                             // const assocGoal = props.goals.filter(i => i.id === task.goal_id);
                             const dateFormatted = DateTime.fromHTTP(task.date).plus({ days: 1 });
             
@@ -139,7 +139,7 @@ const MeetGoals = (props) => {
                             <li key={task.id}> <strong> {dateFormatted.weekdayShort}, {dateFormatted.monthShort} {dateFormatted.day}: </strong> {task.body}</li>
                             )})}
                         </ul>
-                        </p>)
+                        </div>)
                         })}
                     </Card.Body>
                 </Card>

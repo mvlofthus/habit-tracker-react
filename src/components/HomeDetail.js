@@ -12,7 +12,6 @@ const HomeDetail = (props) => {
     return (
         <div >
             <Container className="home" >
-            
             <Row>
                 <Col>
                 <div>
