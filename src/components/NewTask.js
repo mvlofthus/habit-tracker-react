@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { DateTime } from "luxon";
 import { Form, Button, Container, Col, Row, Alert } from 'react-bootstrap';
@@ -6,21 +6,21 @@ import { Form, Button, Container, Col, Row, Alert } from 'react-bootstrap';
 const NewTask = (props) => {
     
     // Bootstrap Alert for successful addition
-    const [show, setShow] = useState(false);
-    const AlertDismissibleExample = () => {
-        
-            if (show) {
-            return (
-                <Alert variant="dark" onClose={() => setShow(false)} dismissible>
-                <Alert.Heading>Task Added!</Alert.Heading>
-                <p>
-                    Add more entries, or navigate to other pages to see your updated stats!
-                </p>
-                </Alert>
-            );
-            }
-    }
-        
+    // const [show, setShow] = useState(false);
+    // const AlertDismissibleExample = () => {
+            
+    //     if (show) {
+    //     return (
+    //         <Alert variant="dark" onClose={() => setShow(false)} dismissible>
+    //         <Alert.Heading>Task Added!</Alert.Heading>
+    //         <p>
+    //             Add more entries, or navigate to other pages to see your updated stats!
+    //         </p>
+    //         </Alert>
+    //     );
+    //     }
+    // }
+
 
 
     const categories = props.categories.sort( function (a,b) {return a.title - b.title});
@@ -60,7 +60,7 @@ const NewTask = (props) => {
         .then((response) => {
             console.log(response);
             props.taskRefreshCallback(props.taskRefresh + 1);
-            setShow(true);
+            // setShow(true);
         })
         .catch((error) => { 
             console.log(error.message);
@@ -82,7 +82,7 @@ const NewTask = (props) => {
     <Row>
         <Col></Col>
         <Col sm={12} md={8}>  
-        {AlertDismissibleExample()}
+        {/* {AlertDismissibleExample()} */}
         <Form onSubmit={onFormSubmit}>
             <Form.Group controlId="taskForm.ControlInput1">
                 <Form.Label>Date</Form.Label>
