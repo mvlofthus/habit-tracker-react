@@ -13,7 +13,6 @@ let metGoals = props.metGoals;
 
   return (
     <div className="chart">
-      {/* <h3>Weekly Goals Completed</h3>  */}
       <VictoryPie 
       data={pieData}
       // labelComponent={<VictoryLabel 
