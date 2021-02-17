@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { Container, Col, Row, Card, Form, Button, ProgressBar } from 'react-bootstrap';
+import { Container, Col, Row, Card, Form, Button } from 'react-bootstrap';
 
 
 const GoalList = (props) => {
     const categories = props.categories.sort( function (a,b) {return a.title - b.title});
     
-    // add category form on page
+    //Add Category
     const [formFieldsCat, setFormFieldsCat] = useState({
         'category': ''
     });
@@ -38,9 +38,10 @@ const GoalList = (props) => {
 
         setFormFieldsCat({
             'title': ''
-    })}
+        })
+    }
 
-    // add goals form on page
+    // Add Goal
     const [formFields, setFormFields] = useState({
         'user_id': 1,
         'category_id': 1,
@@ -61,7 +62,6 @@ const GoalList = (props) => {
         setFormFields(newFormFields);
     };
 
-
     const onGoalFormSubmit = (event) => {
         event.preventDefault();
         console.log(`this would submit fields as: ${formFields.category_id} ${formFields.tag}  ${formFields.description} ${formFields.weekly_freq}`);
@@ -80,7 +80,8 @@ const GoalList = (props) => {
             'tag': '',
             'description': '',
             'weekly_freq': 0
-    })}
+        })
+    }
 
     return (
     <Container>
@@ -100,7 +101,6 @@ const GoalList = (props) => {
     <Col  sm={12} md={6}>
     <Card className="dark-blue-card">
         <Card.Body>
-        
         <h3> Goals: </h3>
         <ul>
             {props.goals.map((goal) => {
@@ -117,7 +117,7 @@ const GoalList = (props) => {
         <Col sm={12} md={6}>  
         <h4>Add Category</h4>
         <Form onSubmit={onCategoryFormSubmit}>
-            <Form.Group controlId="exampleForm.ControlTextarea1">
+            <Form.Group controlId="categoryForm.ControlInput1">
                 <Form.Label>Name</Form.Label>
                 <Form.Control name="title" type="text"  onChange={onCategoryInputChange} value={formFieldsCat.body}/>
             </Form.Group>
@@ -127,11 +127,11 @@ const GoalList = (props) => {
         <Col sm={12} md={6}> 
         <h4>Add Goal</h4> 
         <Form onSubmit={onGoalFormSubmit}>
-            <Form.Group controlId="exampleForm.ControlInput1">
+            <Form.Group controlId="goalForm.ControlInput1">
                 <Form.Label>Weekly Frequency</Form.Label>
                 <Form.Control name="weekly_freq" type="number" placeholder="0"  onChange={onGoalInputChange} value={formFields.date}/>
             </Form.Group>
-            <Form.Group controlId="exampleForm.ControlSelect1">
+            <Form.Group controlId="goalForm.ControlSelect1">
                 <Form.Label>Category</Form.Label>
                 <Form.Control name="category_id" as="select"  onChange={onGoalInputChange} value={formFields.category_id} >
                 {categories.map((category) => {
@@ -139,11 +139,11 @@ const GoalList = (props) => {
                 })} 
                 </Form.Control>
             </Form.Group>
-            <Form.Group controlId="exampleForm.ControlSelect2">
+            <Form.Group controlId="goalForm.ControlInput2">
                 <Form.Label>Tag (Short Description)</Form.Label>
                 <Form.Control name="tag" type="text"  onChange={onGoalInputChange} value={formFields.goal_id} />
             </Form.Group>
-            <Form.Group controlId="exampleForm.ControlTextarea1">
+            <Form.Group controlId="goalForm.ControlTextarea1">
                 <Form.Label>Description</Form.Label>
                 <Form.Control name="description"  rows={3} onChange={onGoalInputChange} value={formFields.body}/>
             </Form.Group>

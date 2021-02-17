@@ -1,7 +1,6 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import React, { useEffect } from 'react';
 import { DateTime } from "luxon";
-import { Form, ToggleButton, ButtonGroup, Button, Container, Col, Row } from 'react-bootstrap';
+import { ToggleButton, ButtonGroup, Container, Col, Row } from 'react-bootstrap';
 
 const TaskList = (props) => {
     // sort by date
@@ -11,6 +10,7 @@ const TaskList = (props) => {
     const [radioValue, setRadioValue] = React.useState("All");
     
     let tasks = (radioValue == "All" ? allTasks : allTasks.filter(task => ( task.category_id == radioValue)));
+    
     useEffect(() => {
         console.log(radioValue);
         if (radioValue == "All") {
@@ -21,10 +21,7 @@ const TaskList = (props) => {
     }, [radioValue])
         
     console.log (tasks);
-        // delete task option
-
         
-    
     return (
         <div>
         <Container>

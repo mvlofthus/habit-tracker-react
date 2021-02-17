@@ -1,8 +1,7 @@
-import React, { useState, useMemo } from 'react';
+import React from 'react';
 import { DateTime } from "luxon";
 import { Container, Col, Row, Card, ProgressBar } from 'react-bootstrap';
 import ChartsPage from './ChartsPage.js';
-import GoalProgress from './ChartsPage.js';
 
 const MeetGoals = (props) => {
     
@@ -69,40 +68,6 @@ const MeetGoals = (props) => {
 
     return (
         <div>
-            {/* <p>today's day: {nowDT.day}</p>
-            <p>today's month: {nowDT.month}</p>
-            <p>today's week: {nowDT.weekNumber} vs </p>
-
-
-            <h2>task week</h2>
-            <ul>
-            {tasks.map((task) => 
-            <li key={task.id}>{task.date} - {task.week}</li>
-            )}
-            </ul>
-
-            <h2> this week's tasks </h2>
-            <ul>
-                {thisWeekTasks.map((task) =>
-                <li key={task.id}>{task.date} {task.id} {task.body} </li>
-                )}
-            </ul>
-
-            {goals.map((goal) => {
-            const id = goal.id; 
-            
-            
-            return (<p key={id}>{id} - {goal.tag} - goal: {goal.weekly_freq} - progress: {weekProgress.get(id)}</p>)})}
-            
-            {/* {weekProgress.forEach((key, value) => {
-                const assocGoal = props.goals.filter(i => i.id === key);
-
-                return (<p key={key}> {assocGoal[0].tag} goal: {assocGoal[0].weekly_freq} achieved: {value} </p>)
-
-            })} */}
-
-            {/* <ChartsPage goalCount={props.goalCount} metGoals={metGoals}/> */}
-        
             <Container>
             <Row>
                 <Col sm={12} lg={6}> 
@@ -134,7 +99,7 @@ const MeetGoals = (props) => {
                     <div className="d-table-cell align-middle">
                     <p className="blue-highlight"><h5>Most Recently Completed Task:</h5>
                     {props.newestTask.map((task) => {
-                        const categ = props.categories.filter(i => i.id === task.category_id);
+                        // const categ = props.categories.filter(i => i.id === task.category_id);
                         const assocGoal = props.goals.filter(i => i.id === task.goal_id);
                         const dateFormatted = DateTime.fromHTTP(task.date).plus({ days: 1 }).toLocaleString(DateTime.DATE_MED_WITH_WEEKDAY);
 
@@ -146,7 +111,6 @@ const MeetGoals = (props) => {
                         </p> 
                     </div>
                     </div>
-                    
                     </Card.Body>
                 </Card>
                 </Col>
@@ -169,16 +133,14 @@ const MeetGoals = (props) => {
                         <ul className="goal-progress-list">
                             {thisWeekTasks.filter(task => task.goal_id == id).map((task) => {
                             // const assocGoal = props.goals.filter(i => i.id === task.goal_id);
-                            // const dateFormatted = DateTime.fromHTTP(task.date).plus({ days: 1 }).toLocaleString(DateTime.DATE_MED_WITH_WEEKDAY);
                             const dateFormatted = DateTime.fromHTTP(task.date).plus({ days: 1 });
             
                             return (
                             <li key={task.id}> <strong> {dateFormatted.weekdayShort}, {dateFormatted.monthShort} {dateFormatted.day}: </strong> {task.body}</li>
                             )})}
                         </ul>
-                        </p>)})}
-                                
-    
+                        </p>)
+                        })}
                     </Card.Body>
                 </Card>
             </Col>
