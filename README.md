@@ -2,19 +2,19 @@
 
 Lifer is a modern habit tracker app for the perfectionists among us who thrive on external structure and need a little help keeping the focus on the present. Many of us lost a great deal of structure with covid lockdowns and he shift to working from home, and need a little non-judgmental help in getting back on track.  Lifer celebrates weekly wins with clean and simple data visualization, allows the user to customize categories and weekly goals, and includes a sortable log of all historic entries. 
 
-<img src='https://media.giphy.com/media/A2a37NriGW7cOcsG7y/giphy.gif' height='400' alt='home page demo' />
+<img src='https://media.giphy.com/media/A2a37NriGW7cOcsG7y/giphy.gif' height='350' alt='home page demo' />
 
 ## Adding Completed Tasks
 By navigating to Add Task, a user will select the date the task was completed, category it belongs to, goal this task is contributing towards, and optional details.  The user can add multiple tasks without redirect for batched entries, and the home page updates with each entry - reflecting progress towards goals and highlighting the most recently completed task.  
-<img src='https://media.giphy.com/media/5S25wYoXGXUrQ6IA4x/giphy.gif' height='400' alt='add task demo' />
+<img src='https://media.giphy.com/media/5S25wYoXGXUrQ6IA4x/giphy.gif' height='350' alt='add task demo' />
 
 ## Task List
 Though our homepage celebrates focusing on the present, users can also view a sortable list of their historic entries by navigating to Task List.  This is useful for viewing more long term progress in certain categories, such as exercise.  
-<img src='https://media.giphy.com/media/jJfgCppuyUQFyceZT0/giphy.gif' height="400" alt='task list demo' />
+<img src='https://media.giphy.com/media/jJfgCppuyUQFyceZT0/giphy.gif' height="350" alt='task list demo' />
 
 ## User Preferences
 Users can also update both their list of categories and list of goals. Categories immediately update after entry and can be used to add goals without refreshing the page.  
-<img src='https://media.giphy.com/media/AnqDOLxj6il6DIEKL2/giphy.gif' height="400" alt='user preferences demo' />
+<img src='https://media.giphy.com/media/AnqDOLxj6il6DIEKL2/giphy.gif' height="350" alt='user preferences demo' />
 
 ## Link to Demo
 Visit https://youtu.be/YJevYkN8QSY to view the demo presented for Ada Developers Academy February 2021 capstone presentations.  
