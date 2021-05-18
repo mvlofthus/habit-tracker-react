@@ -1,19 +1,20 @@
 # Lifer
 
 Lifer is a modern habit tracker app for the perfectionists among us who thrive on external structure and need a little help keeping the focus on the present. Lifer celebrates weekly wins with clean and simple data visualization, allows you to customize categories and weekly goals, and includes a sortable log for all historic entries. 
-<iframe src="https://giphy.com/embed/A2a37NriGW7cOcsG7y" width="480" height="300" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/home-page-A2a37NriGW7cOcsG7y">via GIPHY</a></p>
 
-## Adding Completed Activities
+<img src='https://media.giphy.com/media/A2a37NriGW7cOcsG7y/giphy.gif' height='400' alt='home page demo' />
+
+## Adding Completed Tasks
 By navigating to Add Task, a user will select the date the task was completed, category it belongs to, goal this task is contributing towards, and optional details.  The user can add multiple tasks without redirect for batched entries, and the home page updates with each entry - reflecting progress towards goals and highlighting the most recently completed task.  
-<iframe src="https://giphy.com/embed/5S25wYoXGXUrQ6IA4x" width="480" height="300" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/add-task-5S25wYoXGXUrQ6IA4x">via GIPHY</a></p>
+<img src='https://media.giphy.com/media/5S25wYoXGXUrQ6IA4x/giphy.gif' height='400' alt='add task demo' />
 
 ## Task List
 User can view a sortable list of historic entries.  This is useful for viewing more long term progress in certain categories like exercise.  
-<iframe src="https://giphy.com/embed/jJfgCppuyUQFyceZT0" width="480" height="300" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/task-list-jJfgCppuyUQFyceZT0">via GIPHY</a></p>
+<img src='https://media.giphy.com/media/jJfgCppuyUQFyceZT0/giphy.gif' height="400" alt='task list demo' />
 
 ## User Preferences
 Update list of categories and list of goals. Categories immediately update after entry and can be used to add goals without refreshing the page.  
-<iframe src="https://giphy.com/embed/AnqDOLxj6il6DIEKL2" width="480" height="300" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/user-preferences-AnqDOLxj6il6DIEKL2">via GIPHY</a></p>
+<img src='https://media.giphy.com/media/AnqDOLxj6il6DIEKL2/giphy.gif' height="400" alt='user preferences demo' />
 
 ## Link to Demo
 Visit https://youtu.be/YJevYkN8QSY to view the demo presented for Ada Developers Academy February 2021 capstone presentations.  
