@@ -1,6 +1,6 @@
 # Lifer
 
-Lifer is a modern habit tracker app for the perfectionists among us who thrive on external structure and need a little help keeping the focus on the present. Lifer celebrates weekly wins with clean and simple data visualization, allows you to customize categories and weekly goals, and includes a sortable log of all historic entries. 
+Lifer is a modern habit tracker app for the perfectionists among us who thrive on external structure and need a little help keeping the focus on the present. Many of us lost a great deal of structure with covid lockdowns and he shift to working from home, and need a little non-judgmental help in getting back on track.  Lifer celebrates weekly wins with clean and simple data visualization, allows the user to customize categories and weekly goals, and includes a sortable log of all historic entries. 
 
 <img src='https://media.giphy.com/media/A2a37NriGW7cOcsG7y/giphy.gif' height='400' alt='home page demo' />
 
