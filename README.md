@@ -80,7 +80,7 @@ mysqlclient | 2.0.3
 numpy | 1.19.5
 
 ## Road Map
-*Home - Data visualization highlighting this week's goal progress
-*Task List - Detailed and sortable list of historic entries
-*User Preferences - Customize categories and goals
-*Add Task - Enter new tasks with date, category, and optional details
+* Home - Data visualization highlighting this week's goal progress
+* Task List - Detailed and sortable list of historic entries
+* User Preferences - Customize categories and goals
+* Add Task - Enter new tasks with date, category, and optional details
