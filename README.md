@@ -1,15 +1,21 @@
 # Lifer
 
 Lifer is a modern habit tracker app for the perfectionists among us who thrive on external structure and need a little help keeping the focus on the present. Lifer celebrates weekly wins with clean and simple data visualization, allows you to customize categories and weekly goals, and includes a sortable log for all historic entries. 
-
 <iframe src="https://giphy.com/embed/A2a37NriGW7cOcsG7y" width="480" height="300" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/home-page-A2a37NriGW7cOcsG7y">via GIPHY</a></p>
 
 ## Adding Completed Activities
-By navigating to Add Task, a user can add as many activities as they would like, the home page updates immediately and reflects progress towards goals and highlights the most recently completed task.  
+By navigating to Add Task, a user will select the date the task was completed, category it belongs to, goal this task is contributing towards, and optional details.  The user can add multiple tasks without redirect for batched entries, and the home page updates with each entry - reflecting progress towards goals and highlighting the most recently completed task.  
+<iframe src="https://giphy.com/embed/5S25wYoXGXUrQ6IA4x" width="480" height="300" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/add-task-5S25wYoXGXUrQ6IA4x">via GIPHY</a></p>
 
+## Task List
+User can view a sortable list of historic entries.  This is useful for viewing more long term progress in certain categories like exercise.  
+<iframe src="https://giphy.com/embed/jJfgCppuyUQFyceZT0" width="480" height="300" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/task-list-jJfgCppuyUQFyceZT0">via GIPHY</a></p>
+
+## User Preferences
+Update list of categories and list of goals. Categories immediately update after entry and can be used to add goals without refreshing the page.  
+<iframe src="https://giphy.com/embed/AnqDOLxj6il6DIEKL2" width="480" height="300" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/user-preferences-AnqDOLxj6il6DIEKL2">via GIPHY</a></p>
 
 ## Link to Demo
-
 Visit https://youtu.be/YJevYkN8QSY to view the demo presented for Ada Developers Academy February 2021 capstone presentations.  
 
 ---
@@ -23,6 +29,7 @@ JavaScript | ECMAScript2018
 React | 17.0.1
 Python | 3.9.1
 Flask | 1.1.2
+MySQL | 8.0.23
 
 Front End Library | version
 -----------|-------
@@ -73,10 +80,7 @@ mysqlclient | 2.0.3
 numpy | 1.19.5
 
 ## Road Map
-* Payments: Complete Stripe integration for in-app payments
-* Owner Dashboard: List of plant sitters to be sorted by distance to owner
-* Inbox: Badge for unread messages
-* Request List: Styling for pending/unconfirmed requests.
-* Owner Dashboard: Pagination of list of sitters.
-* Sitter Dashboard: Map of owners that have sent requests (marker color == request status)
-* Authentication: OAuth integration
+*Home - Data visualization highlighting this week's goal progress
+*Task List - Detailed and sortable list of historic entries
+*User Preferences - Customize categories and goals
+*Add Task - Enter new tasks with date, category, and optional details
