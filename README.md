@@ -4,6 +4,14 @@ Lifer is a modern habit tracker app for the perfectionists among us who thrive o
 
 <img src='https://media.giphy.com/media/A2a37NriGW7cOcsG7y/giphy.gif' height='350' alt='home page demo' />
 
+## Table of Contents
+  - [Adding Completed TASKS](#adding-completed-tasks)
+  - [Task List](#task-list)
+  - [User Preferences](#user-preferences)
+  - [Link to Demo](#link-to-demo)
+  - [Technologies](#technologies)
+  - [Road Map](#road-map)
+-- 
 ## Adding Completed Tasks
 By navigating to Add Task, a user will select the date the task was completed, category it belongs to, goal this task is contributing towards, and optional details.  The user can add multiple tasks without redirect for batched entries, and the home page updates with each entry - reflecting progress towards goals and highlighting the most recently completed task.  
 <img src='https://media.giphy.com/media/5S25wYoXGXUrQ6IA4x/giphy.gif' height='350' alt='add task demo' />
