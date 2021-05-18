@@ -1,6 +1,6 @@
 # Lifer
 
-Lifer is a modern habit tracker app for the perfectionists among us who thrive on external structure and need a little help keeping the focus on the present. Lifer celebrates weekly wins with clean and simple data visualization, allows you to customize categories and weekly goals, and includes a sortable log for all historic entries. 
+Lifer is a modern habit tracker app for the perfectionists among us who thrive on external structure and need a little help keeping the focus on the present. Lifer celebrates weekly wins with clean and simple data visualization, allows you to customize categories and weekly goals, and includes a sortable log of all historic entries. 
 
 <img src='https://media.giphy.com/media/A2a37NriGW7cOcsG7y/giphy.gif' height='400' alt='home page demo' />
 
@@ -9,11 +9,11 @@ By navigating to Add Task, a user will select the date the task was completed, c
 <img src='https://media.giphy.com/media/5S25wYoXGXUrQ6IA4x/giphy.gif' height='400' alt='add task demo' />
 
 ## Task List
-User can view a sortable list of historic entries.  This is useful for viewing more long term progress in certain categories like exercise.  
+Though our homepage celebrates focusing on the present, users can also view a sortable list of their historic entries by navigating to Task List.  This is useful for viewing more long term progress in certain categories, such as exercise.  
 <img src='https://media.giphy.com/media/jJfgCppuyUQFyceZT0/giphy.gif' height="400" alt='task list demo' />
 
 ## User Preferences
-Update list of categories and list of goals. Categories immediately update after entry and can be used to add goals without refreshing the page.  
+Users can also update both their list of categories and list of goals. Categories immediately update after entry and can be used to add goals without refreshing the page.  
 <img src='https://media.giphy.com/media/AnqDOLxj6il6DIEKL2/giphy.gif' height="400" alt='user preferences demo' />
 
 ## Link to Demo
@@ -85,3 +85,10 @@ numpy | 1.19.5
 * Task List - Detailed and sortable list of historic entries
 * User Preferences - Customize categories and goals
 * Add Task - Enter new tasks with date, category, and optional details
+
+## Contributing
+Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
+
+## License
+This software is licensed under the GPL license.
+🌱 Copyright (c) 2021 Mackenzie Lofthus
