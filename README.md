@@ -89,6 +89,4 @@ numpy | 1.19.5
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
 
-## License
-This software is licensed under the GPL license.
-🌱 Copyright (c) 2021 Mackenzie Lofthus
+2021 Mackenzie Lofthus
